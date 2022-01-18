@@ -4,10 +4,12 @@
 			<a href="" class="header__logo"><img src="../assets/logo.png" alt=""></a>
 			<div class="header__menu menu">
 				<!-- BURGER -->
-				<div class="menu__icon">
-					<span></span>
-					<span></span>
-					<span></span>
+				<div  class="menu__icon" @click="burger = !burger">
+					<div class="menu-burger-inner">
+						<span :class="{ 'burger__top-close': burger }"></span>
+						<span :class="{ 'burger__midle-close': burger }"></span>
+						<span :class="{ 'burger__bottom-close': burger }"></span>
+					</div>
 				</div>
 
 
@@ -22,7 +24,7 @@
 				</nav>
 			</div>
 			<div class="header__actions actions-header">
-				<a href="" class="actions-header__region"><img src="../assets/globe.png" alt=""> Choice Region</a>
+				<a href="" class="actions-header__region"><img src="../assets/globe.png" alt=""><span>Choice Region</span></a>
 				<div class="actions-header__user user-header">
 					<div class="user-header__icon" @click="showHeaderModal = !showHeaderModal">
 						<img src="../assets/Menu.png" alt="">
@@ -50,7 +52,8 @@ components: {
 },
 data(){
 	return{
-		showHeaderModal:false, 
+		showHeaderModal:false,
+		burger:false 
 	}
 }
 }
@@ -72,14 +75,22 @@ data(){
 		}
 
 		&__logo {
-			
+	
+			@media( max-width: 770px){
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+				
+			}
 		}
 
 		&__menu {
 			
-		}
+			}
 
 		&__actions {
+		
 		}
 }
 
@@ -89,6 +100,81 @@ data(){
 	
 
 		&__icon {
+			display: none;
+			color: #fff;
+			position: absolute;
+			left:  10px;
+			top: 50%;
+			transform: translateY(-50%);
+			.menu-burger-inner{
+				cursor: pointer;
+				width: 45px;
+				height: 45px;
+				position: relative;
+				background: orange;
+
+			}
+			span{
+				background: #fff;
+				width: 30px;
+				height: 3px;
+				display: block;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				&:first-child{
+					top: 14px;
+				}
+				&:last-child{
+					top: 30px;
+
+				}
+			}
+				.burger__top-close{
+					animation: burger_top 0.4s forwards;
+					
+				}
+
+				.burger__midle-close{
+					animation: burger_midle 0.4s forwards;
+				}
+
+				.burger__bottom-close{
+					animation: burger_bottom 0.4s forwards;
+				}
+			@keyframes burger_top {
+			0%   {background-color: red;}
+
+			100% {
+				transform: rotate(45deg);
+				transform-origin: left;
+				left: 10px;
+				top: 10px;
+
+				}
+			}
+			@keyframes burger_midle {
+			0%   {opacity: 100;}
+			100% {opacity: 0;}
+			}
+			@keyframes burger_bottom {
+			0%   {background-color: red;}
+
+			100% {
+				transform: rotate(-45deg);
+				left: 10px;
+				top: 31px;
+
+				transform-origin: left;
+
+				}
+			}
+
+			@media( max-width: 770px){
+				display: inline-block;
+				
+			}
 
 		}
 
@@ -101,7 +187,16 @@ data(){
 			align-items: center;
 			justify-content: center;
 			li{
-				margin: 15px ;
+				margin: 0 15px ;
+				@media( max-width: 840px){
+					margin: 0 10px ;
+					font-size: 14px;
+					
+				}
+			}
+			@media( max-width: 770px){
+			display: none;
+				
 			}
 
 		}
@@ -133,6 +228,11 @@ data(){
 			img{
 				margin: 0 10px 0 0;
 			}
+			@media (max-width: 980px) {
+				span{
+					display: none;
+				}
+			}
 		}
 
 		&__user {
@@ -160,6 +260,7 @@ data(){
 				&:last-child{
 					margin: 0;
 				}
+				
 				a{
 					color: #fff;
 					text-decoration: none;

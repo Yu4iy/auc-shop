@@ -6,9 +6,9 @@
 				<!-- BURGER -->
 				<div  class="menu__icon" @click="burger = !burger">
 					<div class="menu-burger-inner">
-						<span :class="{ 'burger__top-close': burger }"></span>
-						<span :class="{ 'burger__midle-close': burger }"></span>
-						<span :class="{ 'burger__bottom-close': burger }"></span>
+						<span :class="{ 'burger__top-open': burger, 'burger__top-close':!burger}"></span>
+						<span :class="{ 'burger__midle-open': burger, 'burger__midle-close':!burger }"></span>
+						<span :class="{ 'burger__bottom-open': burger, 'burger__bottom-close':!burger }"></span>
 					</div>
 				</div>
 
@@ -55,7 +55,10 @@ data(){
 		showHeaderModal:false,
 		burger:false 
 	}
-}
+},
+computed:{
+	
+},
 }
 </script>
 
@@ -111,11 +114,10 @@ data(){
 				width: 45px;
 				height: 45px;
 				position: relative;
-				background: orange;
 
 			}
 			span{
-				background: #fff;
+				background: #a58a5c;
 				width: 30px;
 				height: 3px;
 				display: block;
@@ -131,20 +133,31 @@ data(){
 
 				}
 			}
-				.burger__top-close{
+				.burger__top-open{
 					animation: burger_top 0.4s forwards;
+				}
+				.burger__top-close{
+					animation: burger_top-close 0.4s forwards;
 					
 				}
 
-				.burger__midle-close{
+				.burger__midle-open{
 					animation: burger_midle 0.4s forwards;
 				}
+				
+				.burger__midle-close{
+					animation: burger_midle-close 0.2s forwards;
+				}
 
-				.burger__bottom-close{
+				.burger__bottom-open{
 					animation: burger_bottom 0.4s forwards;
 				}
+				.burger__bottom-close{
+					animation: burger_bottom-close 0.4s forwards;
+					
+				}
 			@keyframes burger_top {
-			0%   {background-color: red;}
+			0%   {background-color: #d7c5a2;}
 
 			100% {
 				transform: rotate(45deg);
@@ -154,12 +167,56 @@ data(){
 
 				}
 			}
+
+			@keyframes burger_top-close {
+			0%   {
+				transform: rotate(45deg);
+				transform-origin: left;
+				left: 10px;
+				top: 10px;}
+
+			100% {
+				transform: rotate(0deg);
+				transform-origin: left;
+				left: 7px;
+				top: 12px;
+
+				}
+			}
+
+			@keyframes burger_bottom-close {
+			0%   {
+				transform: rotate(-45deg);
+				transform-origin: left;
+				left: 10px;
+				top: 31px;}
+
+			100% {
+				transform: rotate(0deg);
+				transform-origin: left;
+				left: 7px;
+				top: 30px;
+
+				}
+			}
+
 			@keyframes burger_midle {
 			0%   {opacity: 100;}
 			100% {opacity: 0;}
 			}
+			@keyframes burger_midle-close {
+			0%   {
+				opacity: 0;
+				}
+
+			100% {
+				opacity: 100;
+
+				}
+			}
+			
 			@keyframes burger_bottom {
-			0%   {background-color: red;}
+			0%   {background-color: #d7c5a2;}
 
 			100% {
 				transform: rotate(-45deg);
@@ -233,6 +290,10 @@ data(){
 					display: none;
 				}
 			}
+			@media( max-width: 700px){
+			display: none;
+			}
+		
 		}
 
 		&__user {

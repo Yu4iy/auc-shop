@@ -17,3 +17,32 @@
 
 
 
+// TITLE_BOCK
+.title {
+	text-align: center;
+	padding: 30px 0 100px 0;
+	&__item {
+		color: #a58a5c;
+		font-size: 50px;
+		font-family: 'Tangerine', cursive;
+	}
+
+	&__main {
+		font-size: 40px;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		margin-top: 30px;
+
+
+	}
+
+	&__main-w {
+		color: #fff;
+	}
+
+	&__text {
+		font-size: 20px;
+		margin-top: 30px;
+		color: #fff;
+	}
+}

@@ -22,6 +22,7 @@
 						<li><a class="menu__link" href="">Contacts</a></li>
 					</ul>
 				</nav>
+
 			</div>
 			<div class="header__actions actions-header">
 				<a href="" class="actions-header__region"><img src="../assets/globe.png" alt=""><span>Choice Region</span></a>
@@ -30,7 +31,7 @@
 						<img src="../assets/Menu.png" alt="">
 					</div>
 					<transition name="fade" appear>
-						<ul @mouseleave="showHeaderModal = false" v-show="showHeaderModal" class="user-header__menu ">
+						<ul  v-show="showHeaderModal" class="user-header__menu ">
 							<li> <a class="user-header__link-1" href="">Lorem ipsum1</a></li>
 							<li> <a class="user-header__link-2" href="">Lorem dolor2</a></li>
 							<li> <a class="user-header__link-3" href="">Lorem amet3</a></li>
@@ -40,6 +41,20 @@
 				</div>
 			</div>
 		</div>
+		<transition name="fade" appear>
+			<nav class="menu-mobile" v-show = burger >
+				<ul class="menu-mobile__list">
+					<li><a class="menu-mobile__link" href="">Home</a></li>
+					<li><a class="menu-mobile__link" href="">Auction</a></li>
+					<li><a class="menu-mobile__link" href="">About Project</a></li>
+					<li><a class="menu-mobile__link" href="">Partners</a></li>
+					<li><a class="menu-mobile__link" href="">Contacts</a></li>
+					<li> <a href="" class="menu-mobile__link"><img src="../assets/globe.png" alt=""><span> Choice Region</span></a></li>
+
+				</ul>
+			</nav>
+		</transition>
+
 	</header>
 </template>
 
@@ -66,7 +81,8 @@ computed:{
 @import "@/styles/global.scss";
 .header {
 	background: #1c242a ;
-	
+	position: relative;
+	z-index: 2000;
 
 		&__container {
 			display: flex;
@@ -89,12 +105,36 @@ computed:{
 		}
 
 		&__menu {
-			
+
 			}
 
 		&__actions {
 		
 		}
+}
+.menu-mobile{
+	position: fixed;
+	background: #1c242ad2;
+	top: 75px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	font-size: 25px;
+	text-align: center;
+	padding: 40px 0 ;
+	overflow: scroll;
+	li{
+		margin: 0 0 30px  0 ;
+
+	}
+
+	.menu-mobile__link{
+		color: #fff;
+		text-decoration: none;
+		font-weight: 700;
+
+}
+
 }
 
 .menu {
@@ -124,6 +164,7 @@ computed:{
 				position: absolute;
 				top: 50%;
 				left: 50%;
+				border-radius: 2px;
 				transform: translate(-50%,-50%);
 				&:first-child{
 					top: 14px;
@@ -310,11 +351,11 @@ computed:{
 
 		&__menu {
 			position: absolute;
-			top: 75px;
+			top: 78px;
 			right: 0;
-			z-index: -2;
 			background: #1c242a;
 			padding: 20px;
+
 			li{
 				list-style: none;
 				margin: 0 0 10px 0 ;
